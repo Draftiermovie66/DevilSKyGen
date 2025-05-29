@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Devil SkyGen Admin Login</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .login-box, .admin-panel {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff4500;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    input[type="password"] {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      width: 80%;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1.5rem;
+      background-color: #ff4500;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #e03d00;
+    }
+
+    .admin-panel {
+      display: none;
+      text-align: left;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #ff4500;
+      padding: 0.2rem 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Devil SkyGen Admin Access</h1>
+  <div class="login-box">
+    <p>Enter your role's password:</p>
+    <input type="password" id="passwordInput" placeholder="Enter Password" />
+    <br />
+    <button onclick="login()">Login</button>
+    <p id="error" style="color: red;"></p>
+  </div>
+
+  <div class="admin-panel" id="adminPanel">
+    <h2>🛠️ Beta Features Menu</h2>
+    <p>Welcome, <span id="role"></span>! Here’s what’s coming soon:</p>
+    <ul>
+      <li>⚔️ PvP Enhancements <span class="tag">Beta</span></li>
+      <li>💎 Crate Key System <span class="tag">Upcoming</span></li>
+      <li>🌎 New Realm Expansion <span class="tag">Planned</span></li>
+      <li>🎨 Custom Player Skins <span class="tag">Dev</span></li>
+      <li>🗳️ Community Voting System <span class="tag">Idea</span></li>
+      <li>🎵 Soundpack Customization <span class="tag">Concept</span></li>
+    </ul>
+  </div>
+
+  <script>
+    function login() {
+      const pass = document.getElementById("passwordInput").value;
+      const error = document.getElementById("error");
+      const panel = document.getElementById("adminPanel");
+      const roleText = document.getElementById("role");
+
+      if (pass === "8435") {
+        roleText.textContent = "Admin";
+        panel.style.display = "block";
+        error.textContent = "";
+        document.querySelector(".login-box").style.display = "none";
+      } else if (pass === "4562") {
+        roleText.textContent = "Owner";
+        panel.style.display = "block";
+        error.textContent = "";
+        document.querySelector(".login-box").style.display = "none";
+      } else {
+        error.textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+
+</body>
+</html>
