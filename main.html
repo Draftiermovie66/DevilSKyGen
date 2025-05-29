@@ -3,112 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Devil SkyGen Admin Login</title>
+  <title>Devil SkyGen - Official Site</title>
   <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #fff;
+      --section-bg: #1a1a1a;
+    }
+
     body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       text-align: center;
-      padding: 2rem;
+      transition: background-color 0.4s, color 0.4s;
     }
 
-    .login-box, .admin-panel {
-      background-color: #1e1e1e;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #ff4500;
-      max-width: 400px;
-      margin: 2rem auto;
+    header {
+      background: linear-gradient(90deg, orange, red);
+      padding: 1.5rem;
+      animation: pulse 4s infinite alternate;
+      box-shadow: 0 0 10px red;
     }
 
-    input[type="password"] {
-      padding: 0.5rem;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px orange; }
+      100% { box-shadow: 0 0 20px red; }
+    }
+
+    nav {
+      background-color: #111;
+      padding: 0.5rem 0;
+    }
+
+    nav a {
+      color: #ffa500;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-theme {
+      background: #333;
+      color: #fff;
       border: none;
+      padding: 0.4rem 0.8rem;
       border-radius: 5px;
-      width: 80%;
-      margin-bottom: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1.5rem;
-      background-color: #ff4500;
-      border: none;
-      border-radius: 5px;
-      color: white;
+      margin-top: 1rem;
       cursor: pointer;
-      font-size: 1rem;
     }
 
-    button:hover {
-      background-color: #e03d00;
+    .section {
+      background-color: var(--section-bg);
+      margin: 1.5rem auto;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 0 8px #333;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
     }
 
-    .admin-panel {
-      display: none;
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .collapsible {
+      cursor: pointer;
       text-align: left;
+      padding: 0.5rem 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      background-color: #222;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    ul {
-      list-style: disc;
+    .collapsible::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: #ffa500;
+    }
+
+    .collapsible.active::after {
+      content: "–";
+    }
+
+    .content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      text-align: left;
+      padding: 0 1rem;
+      opacity: 0;
+    }
+
+    .collapsible.active + .content {
+      opacity: 1;
+    }
+
+    .content ul {
       padding-left: 1.2rem;
+      line-height: 1.6;
     }
 
-    .tag {
-      display: inline-block;
-      background-color: #ff4500;
-      padding: 0.2rem 0.5rem;
-      margin-left: 0.5rem;
-      font-size: 0.8rem;
-      border-radius: 4px;
-      color: black;
+    .footer {
+      margin-top: 2rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .owners span, .credits span {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .credits span::before {
+      content: "• ";
+      color: #ff4500;
     }
   </style>
 </head>
 <body>
 
-  <h1>Devil SkyGen Admin Access</h1>
-  <div class="login-box">
-    <p>Enter your role's password:</p>
-    <input type="password" id="passwordInput" placeholder="Enter Password" />
-    <br />
-    <button onclick="login()">Login</button>
-    <p id="error" style="color: red;"></p>
+  <header>
+    <h1>🔥 Devil SkyGen 🔥</h1>
+    <p>Minecraft SkyGen | Gaming Community</p>
+  </header>
+
+  <button class="toggle-theme" onclick="toggleTheme()">🌙 Toggle Dark Mode</button>
+
+  <div class="section">
+    <div class="collapsible" tabindex="0">🔗 Join the Community</div>
+    <div class="content">
+      <p>🎮 Server Status: <strong>Online</strong> Realm Code <strong>4N2f-LcwcEQ</strong></p>
+      <p>👥 63+ Members | 📅 Est. February 2025</p>
+      <p><a href="https://discord.gg/5JBkuHnnHj" target="_blank">💬 Join Our Discord</a></p>
+    </div>
   </div>
 
-  <div class="admin-panel" id="adminPanel">
-    <h2>🛠️ Beta Features Menu</h2>
-    <p>Welcome, <span id="role"></span>! Here’s what’s coming soon:</p>
-    <ul>
-      <li>⚔️ PvP Enhancements <span class="tag">Beta</span></li>
-      <li>💎 Crate Key System <span class="tag">Upcoming</span></li>
-      <li>🌎 New Realm Expansion <span class="tag">Planned</span></li>
-      <li>🎨 Custom Player Skins <span class="tag">Dev</span></li>
-      <li>🗳️ Community Voting System <span class="tag">Idea</span></li>
-      <li>🎵 Soundpack Customization <span class="tag">Concept</span></li>
-    </ul>
+  <div class="section">
+    <div class="collapsible" tabindex="0">📜 Server Rules / Punishments</div>
+    <div class="content">
+      <ul>
+        <li>No Doxxing – Ban</li>
+        <li>Do not disrespect staff – Warn</li>
+        <li>Do not violate Discord's TOS – Ban (<a href="https://discord.com/terms" target="_blank">Click Here</a>)</li>
+        <li>Do not spam ping server members – Warn or Mute</li>
+        <li>No NSFW Media – Ban</li>
+        <li>No SelfPromos, only in ⁠🙋-self-promote</li>
+        <li>Do not spam ping testers or mods – Ban</li>
+        <li>No being toxic/threatening towards members – Ban</li>
+        <li>No hate speech – Mute or Ban</li>
+        <li>No using alt accounts – Possible Ban</li>
+      </ul>
+    </div>
   </div>
+
+  <div class="section">
+    <div class="collapsible" tabindex="0">📜 Realm Rules</div>
+    <div class="content">
+      <ul>
+        <li>No racist or sexist remarks</li>
+        <li>Do not ask for Operator/Admin</li>
+        <li>No hacking or unfair skins</li>
+        <li>Admins: use powers responsibly</li>
+        <li>No flooding/promoting other servers</li>
+        <li>Report glitches instead of abusing them</li>
+        <li>No ruining server reputation</li>
+        <li>No double-clicking (auto-ban)</li>
+        <li>No kill farming</li>
+        <li>No TOS violations (<a href="https://www.minecraft.net/en-us/eula" target="_blank">Click Here</a>)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="collapsible" tabindex="0">👑 Server Founders</div>
+    <div class="content owners">
+      <span>🧑‍💼 Owner / Founder: <strong>DraftierMovie66</strong></span>
+      <span>🤝 Co-Owner / Co-Founder: <strong>MegaKing</strong></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="collapsible" tabindex="0">🎖️ Credits</div>
+    <div class="content credits">
+      <span>Owner And Co-Owner</span>
+      <span></span>
+      <span>Owner / Founder @DraftierMovie66</span>
+      <span></span>
+      <span>Co-Owner / Co-Founder @Megaking</span>
+      <span></span>
+      <span>Builder</span>
+      <span></span>
+      <span>OG Builder @Rebec❤</span>
+      <span></span>
+      <span>Mods Discord</span>
+      <span></span>
+      <span>Mod @jeniel</span>
+      <span></span>
+      <span>Mod @Empathic69</span>
+      <span></span>
+      <span>Admins</span>
+      <span></span>
+      <span>Admin @19💚🤍</span>
+      <span></span>
+      <span>Admin @! Plixy</span>
+      <span></span>
+      <span>Admin @PickleDGuiver</span>
+      <span></span>
+      <span>Admin @Cubical (Bev)</span>
+      <span></span>
+      <span>Admin @death is the name ♥</span>
+    </div>
+  </div>
+
+  <div class="footer">© 2025 Devil SkyGen. All rights reserved.</div>
 
   <script>
-    function login() {
-      const pass = document.getElementById("passwordInput").value;
-      const error = document.getElementById("error");
-      const panel = document.getElementById("adminPanel");
-      const roleText = document.getElementById("role");
+    // Dropdown logic with keyboard support
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(collapse => {
+      collapse.addEventListener('click', toggleCollapse);
+      collapse.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCollapse.call(collapse);
+        }
+      });
+    });
 
-      if (pass === "8435") {
-        roleText.textContent = "Admin";
-        panel.style.display = "block";
-        error.textContent = "";
-        document.querySelector(".login-box").style.display = "none";
-      } else if (pass === "4562") {
-        roleText.textContent = "Owner";
-        panel.style.display = "block";
-        error.textContent = "";
-        document.querySelector(".login-box").style.display = "none";
+    function toggleCollapse() {
+      this.classList.toggle('active');
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
       } else {
-        error.textContent = "Incorrect password. Try again.";
+        content.style.maxHeight = content.scrollHeight + 'px';
       }
+
+      // Haptic + sound feedback
+      if (navigator.vibrate) navigator.vibrate(50);
+      new Audio('https://www.soundjay.com/button/sounds/button-16.mp3').play();
+    }
+
+    // Scroll animations
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Dark mode toggle
+    function toggleTheme() {
+      const root = document.documentElement;
+      const dark = getComputedStyle(root).getPropertyValue('--bg-color') === '#0d0d0d';
+      root.style.setProperty('--bg-color', dark ? '#fff' : '#0d0d0d');
+      root.style.setProperty('--text-color', dark ? '#000' : '#fff');
+      root.style.setProperty('--section-bg', dark ? '#eee' : '#1a1a1a');
     }
   </script>
 
